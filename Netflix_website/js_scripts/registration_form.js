@@ -26,6 +26,7 @@ const notPasswordConfirm = document.querySelector(
 
 function validateName(input, notification, emptyNotification) {
   if (input.value.trim() === "") {
+    console.log("Name is empty.");
     emptyNotification.classList.remove("hidden");
     notification.classList.add("hidden");
     input.classList.add("input-error");
