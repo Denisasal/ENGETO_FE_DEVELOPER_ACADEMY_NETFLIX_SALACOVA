@@ -32,13 +32,13 @@ function validateName(input, notification, emptyNotification) {
     input.classList.remove("input-success");
     return false;
   } else if (input.value.charAt(0) !== input.value.charAt(0).toUpperCase()) {
-    emptyNotification.classList.remove("hidden");
-    notification.classList.add("hidden");
+    emptyNotification.classList.add("hidden");
+    notification.classList.remove("hidden");
     input.classList.add("input-error");
     input.classList.remove("input-success");
     return false;
   } else {
-    emptyNotification.classList.remove("hidden");
+    emptyNotification.classList.add("hidden");
     notification.classList.add("hidden");
     input.classList.remove("input-error");
     input.classList.add("input-success");
@@ -50,8 +50,8 @@ function validateName(input, notification, emptyNotification) {
 function validateEmail() {
   if (!emailInput.value.includes("@")) {
     notEmail.classList.remove("hidden");
-    emailInput.classList.remove("input-error");
-    emailInput.classList.add("input-success");
+    emailInput.classList.add("input-error");
+    emailInput.classList.remove("input-success");
     return false;
   } else {
     notEmail.classList.add("hidden");
@@ -60,6 +60,7 @@ function validateEmail() {
     return true;
   }
 }
+
 // Password
 function validatePassword() {
   const hasSpecialChar = /[.*_-]/.test(passwordInput.value);
@@ -79,18 +80,18 @@ function validatePassword() {
   }
 }
 
-// Pasword confirmation
+// Password confirmation
 function validatePasswordConfirmation() {
   if (
     passwordInput.value !== passwordConfirmInput.value ||
     passwordConfirmInput.value === ""
   ) {
-    notPasswordConfirm.style.display = "block";
+    notPasswordConfirm.classList.remove("hidden");
     passwordConfirmInput.classList.add("input-error");
     passwordConfirmInput.classList.remove("input-success");
     return false;
   } else {
-    notPasswordConfirm.style.display = "none";
+    notPasswordConfirm.classList.add("hidden");
     passwordConfirmInput.classList.remove("input-error");
     passwordConfirmInput.classList.add("input-success");
     return true;
