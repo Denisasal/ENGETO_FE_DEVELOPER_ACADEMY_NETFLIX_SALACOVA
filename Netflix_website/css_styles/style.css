@@ -421,12 +421,10 @@ html {
 
 .input-error {
   border: 2px solid red;
-  background-color: #ffe5e5;
 }
 
 .input-success {
   border: 2px solid green;
-  background-color: #e5ffe5;
 }
 
 /* RESPONSIVITY */
