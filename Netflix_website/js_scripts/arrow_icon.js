@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Show the icon after scrolling down 200px
   window.addEventListener("scroll", function () {
     if (window.scrollY > 200) {
-      icon.classList.add(".visible");
+      icon.classList.add("visible");
     } else {
-      icon.classList.remove(".visible");
+      icon.classList.remove("visible");
     }
   });
   // Scroll to the top when clicking the icon
