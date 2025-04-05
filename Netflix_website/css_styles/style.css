@@ -103,11 +103,14 @@ html {
   right: 20px;
   cursor: pointer;
   color: rgb(214, 28, 28);
-  display: none;
+  opacity: 0; /* Initially hidden with opacity */
+  pointer-events: none; /* Prevent interaction when hidden */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
 }
 
 .icon.visible {
-  display: block;
+  opacity: 1; /* Make visible */
+  pointer-events: auto; /* Allow interaction when visible */
 }
 
 #img1,
