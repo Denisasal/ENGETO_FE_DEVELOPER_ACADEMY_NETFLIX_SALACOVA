@@ -26,19 +26,22 @@ const notPasswordConfirm = document.querySelector(
 
 function validateName(input, notification, emptyNotification) {
   if (input.value.trim() === "") {
-    emptyNotification.style.display = "block";
-    notification.style.display = "none";
-    input.style.borderColor = "red";
+    emptyNotification.classList.remove("hidden");
+    notification.classList.add("hidden");
+    input.classList.add("input-error");
+    input.classList.remove("input-success");
     return false;
   } else if (input.value.charAt(0) !== input.value.charAt(0).toUpperCase()) {
-    emptyNotification.style.display = "none";
-    notification.style.display = "block";
-    input.style.borderColor = "red";
+    emptyNotification.classList.remove("hidden");
+    notification.classList.add("hidden");
+    input.classList.add("input-error");
+    input.classList.remove("input-success");
     return false;
   } else {
-    emptyNotification.style.display = "none";
-    notification.style.display = "none";
-    input.style.borderColor = "green";
+    emptyNotification.classList.remove("hidden");
+    notification.classList.add("hidden");
+    input.classList.remove("input-error");
+    input.classList.add("input-success");
     return true;
   }
 }
@@ -46,12 +49,14 @@ function validateName(input, notification, emptyNotification) {
 // Email
 function validateEmail() {
   if (!emailInput.value.includes("@")) {
-    notEmail.style.display = "block";
-    emailInput.style.borderColor = "red";
+    notEmail.classList.remove("hidden");
+    emailInput.classList.remove("input-error");
+    emailInput.classList.add("input-success");
     return false;
   } else {
-    notEmail.style.display = "none";
-    emailInput.style.borderColor = "green";
+    notEmail.classList.add("hidden");
+    emailInput.classList.remove("input-error");
+    emailInput.classList.add("input-success");
     return true;
   }
 }
@@ -62,12 +67,14 @@ function validatePassword() {
   const isPasswordValid = hasSpecialChar && hasDigit;
 
   if (!isPasswordValid) {
-    notPassword.style.display = "block";
-    passwordInput.style.borderColor = "red";
+    notPassword.classList.remove("hidden");
+    passwordInput.classList.add("input-error");
+    passwordInput.classList.remove("input-success");
     return false;
   } else {
-    notPassword.style.display = "none";
-    passwordInput.style.borderColor = "green";
+    notPassword.classList.add("hidden");
+    passwordInput.classList.remove("input-error");
+    passwordInput.classList.add("input-success");
     return true;
   }
 }
@@ -79,11 +86,13 @@ function validatePasswordConfirmation() {
     passwordConfirmInput.value === ""
   ) {
     notPasswordConfirm.style.display = "block";
-    passwordConfirmInput.style.borderColor = "red";
+    passwordConfirmInput.classList.add("input-error");
+    passwordConfirmInput.classList.remove("input-success");
     return false;
   } else {
     notPasswordConfirm.style.display = "none";
-    passwordConfirmInput.style.borderColor = "green";
+    passwordConfirmInput.classList.remove("input-error");
+    passwordConfirmInput.classList.add("input-success");
     return true;
   }
 }
@@ -121,9 +130,9 @@ form.addEventListener("submit", (event) => {
   ) {
     alert("Formulář byl úspěšně odeslán!");
     form.reset();
-    document
-      .querySelectorAll("input")
-      .forEach((input) => (input.style.borderColor = ""));
-    document.querySelectorAll("p").forEach((p) => (p.style.display = "none"));
+    document.querySelectorAll("input").forEach((input) => {
+      input.classList.remove("input-error", "input-success");
+    });
+    document.querySelectorAll("p").forEach((p) => p.classList.add("hidden"));
   }
 });

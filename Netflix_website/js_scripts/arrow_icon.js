@@ -3,14 +3,12 @@
 document.addEventListener("DOMContentLoaded", function () {
   var icon = document.querySelector(".icon");
   if (!icon) return;
-  // Hide the icon
-  // icon.style.display = "none";
   // Show the icon after scrolling down 200px
   window.addEventListener("scroll", function () {
     if (window.scrollY > 200) {
-      icon.style.display = "block";
+      icon.classList.add("visible");
     } else {
-      icon.style.display = "none";
+      icon.classList.remove("visible");
     }
   });
   // Scroll to the top when clicking the icon
