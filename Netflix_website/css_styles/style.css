@@ -104,12 +104,13 @@ html {
   cursor: pointer;
   color: rgb(214, 28, 28);
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.icon.visible {
+.icon.visibleIcon {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
@@ -411,22 +412,26 @@ html {
 }
 .registration-form p {
   color: rgb(214, 28, 28);
-  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  height: 0;
+  overflow: hidden;
 }
 .navigation button:hover,
 .sent:hover {
   transform: scale(1.1);
 }
 
-.hidden {
-  display: none;
+.registration-form p.showNotif {
+  opacity: 1;
+  height: auto;
 }
 
-.input-error {
+.registration-form .input-error {
   border: 2px solid red;
 }
 
-.input-success {
+.registration-form .input-success {
   border: 2px solid green;
 }
 

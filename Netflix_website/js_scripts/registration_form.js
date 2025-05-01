@@ -25,22 +25,23 @@ const notPasswordConfirm = document.querySelector(
 // First and last name
 
 function validateName(input, notification, emptyNotification) {
-  if (input.value.trim() === "") {
-    console.log("Name is empty.");
-    emptyNotification.classList.remove("hidden");
-    notification.classList.add("hidden");
+  const value = input.value.trim();
+
+  if (value === "") {
+    emptyNotification.classList.add("showNotif");
+    notification.classList.remove("showNotif");
     input.classList.add("input-error");
     input.classList.remove("input-success");
     return false;
-  } else if (input.value.charAt(0) !== input.value.charAt(0).toUpperCase()) {
-    emptyNotification.classList.add("hidden");
-    notification.classList.remove("hidden");
+  } else if (value.charAt(0) !== value.charAt(0).toUpperCase()) {
+    emptyNotification.classList.remove("showNotif");
+    notification.classList.add("showNotif");
     input.classList.add("input-error");
     input.classList.remove("input-success");
     return false;
   } else {
-    emptyNotification.classList.add("hidden");
-    notification.classList.add("hidden");
+    emptyNotification.classList.remove("showNotif");
+    notification.classList.remove("showNotif");
     input.classList.remove("input-error");
     input.classList.add("input-success");
     return true;
@@ -50,12 +51,12 @@ function validateName(input, notification, emptyNotification) {
 // Email
 function validateEmail() {
   if (!emailInput.value.includes("@")) {
-    notEmail.classList.remove("hidden");
+    notEmail.classList.add("showNotif");
     emailInput.classList.add("input-error");
     emailInput.classList.remove("input-success");
     return false;
   } else {
-    notEmail.classList.add("hidden");
+    notEmail.classList.remove("showNotif");
     emailInput.classList.remove("input-error");
     emailInput.classList.add("input-success");
     return true;
@@ -69,12 +70,12 @@ function validatePassword() {
   const isPasswordValid = hasSpecialChar && hasDigit;
 
   if (!isPasswordValid) {
-    notPassword.classList.remove("hidden");
+    notPassword.classList.add("showNotif");
     passwordInput.classList.add("input-error");
     passwordInput.classList.remove("input-success");
     return false;
   } else {
-    notPassword.classList.add("hidden");
+    notPassword.classList.remove("showNotif");
     passwordInput.classList.remove("input-error");
     passwordInput.classList.add("input-success");
     return true;
@@ -87,12 +88,12 @@ function validatePasswordConfirmation() {
     passwordInput.value !== passwordConfirmInput.value ||
     passwordConfirmInput.value === ""
   ) {
-    notPasswordConfirm.classList.remove("hidden");
+    notPasswordConfirm.classList.add("showNotif");
     passwordConfirmInput.classList.add("input-error");
     passwordConfirmInput.classList.remove("input-success");
     return false;
   } else {
-    notPasswordConfirm.classList.add("hidden");
+    notPasswordConfirm.classList.remove("showNotif");
     passwordConfirmInput.classList.remove("input-error");
     passwordConfirmInput.classList.add("input-success");
     return true;
@@ -133,8 +134,8 @@ form.addEventListener("submit", (event) => {
     alert("Formulář byl úspěšně odeslán!");
     form.reset();
     document.querySelectorAll("input").forEach((input) => {
-      input.classList.remove("input-error", "input-success");
+      input.classList.remove("input-error");
+      input.classList.remove("input-success");
     });
-    document.querySelectorAll("p").forEach((p) => p.classList.add("hidden"));
   }
 });
